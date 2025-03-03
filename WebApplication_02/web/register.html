@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form action="/register" method="get">
+            <table>
+                <tr>
+                    <td colspan="2" style="font-weight: bold">
+                        LOGIN INFORMATION
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="text" name="email" id="email" /></td>
+                </tr>
+                <tr>
+                    <td>Password: </td>
+                    <td><input type="password" name="password" id="password" /></td>    
+                </tr>
+                <tr>
+                    <td>Confirm Password: </td>
+                    <td><input type="password" name="confirm_password" id="confirm_password" /></td>    
+                </tr>
+                <tr>
+                    <td colspan="2" style="font-weight: bold">
+                        USER INFORMATION
+                    </td>
+                </tr>
+                <tr>
+                    <td>Fullname: </td>
+                    <td><input type="text" name="fullname" id="fullname" /></td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td><input type="radio" name="gender" id="male" checked="checked" value="male" />Male<br/>
+                        <input type="radio" name="gender" id="female" value="female"/>Female</td>
+                </tr>
+                <tr>
+                    <td>Date of birth</td>
+                    <td>
+                        <select>
+                            <option>1</option>
+                        </select>
+                        <select>
+                            <option></option>
+                        </select>
+                        <select>
+                            <option></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mobile</td>
+                    <td><input type="number" name="mobile" id="mobile" /></td>
+                </tr>
+                <tr>
+                    <td>Avatar</td>
+                    <td><input type="file" name="avatar" id="avatar" /> <br/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="font-weight: bold">USER ADDRESS</td>
+                </tr>
+                <tr>
+                    <td>Country</td>
+                    <td>
+                        <select>
+                            <option></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td>
+                        <textarea></textarea>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
