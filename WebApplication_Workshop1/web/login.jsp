@@ -15,9 +15,13 @@
         <h1>Đăng nhập</h1>
         <form action="MainController" method="post">
             <input type="hidden" name="action" value="login"/>
-            Username: <input type="txt" name="txtUsername"/> <br/>
+            Username: <input type="textt" name="txtUsername"/> <br/>
             Password: <input type="password" name="txtPassword"/> <br/>
             <input type="submit" value="Login"/>
         </form>
+        <%
+            String message = request.getAttribute("message") + "";
+        %>
+        <%=message.equals("null") ? "" : message%>
     </body>
 </html>

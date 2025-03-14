@@ -36,7 +36,6 @@ public class ProjectDAO implements IDAO<ProjectDTO, Integer> {
             ps.setDate(5, entity.getEstimated_launch());
             int n = ps.executeUpdate();
             return n > 0;
-
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -105,10 +104,10 @@ public class ProjectDAO implements IDAO<ProjectDTO, Integer> {
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            String searchPattern = "%"+searchTerm+"%";
+            String searchPattern = "%" + searchTerm + "%";
             ps.setString(1, searchPattern);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 ProjectDTO project = new ProjectDTO(
                           rs.getInt("project_id"),
                           rs.getString("project_name"),
@@ -125,4 +124,61 @@ public class ProjectDAO implements IDAO<ProjectDTO, Integer> {
         return list;
     }
 
+    public boolean updateStatus(String projectID, String nStatus) {
+        String sql = "UPDATE tblStartupProjects SET status = ? WHERE project_id = ?";
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, nStatus);
+            ps.setString(2, projectID);
+            int n = ps.executeUpdate();
+            return n > 0;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    public ProjectDTO readById(int id) {
+        String sql = "SELECT * FROM tblStartupProjects WHERE project_id = ?";
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                ProjectDTO project = new ProjectDTO(
+                          rs.getInt("project_id"),
+                          rs.getString("project_name"),
+                          rs.getString("description"),
+                          rs.getString("status"),
+                          rs.getDate("estimated_launch"));
+                return project;
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public boolean delete(int projectID) {
+        String sql = "DELETE FROM tblStartupProjects WHERE project_id = ?";
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, projectID);
+            int n = ps.executeUpdate();
+            return n > 0;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+   
 }
